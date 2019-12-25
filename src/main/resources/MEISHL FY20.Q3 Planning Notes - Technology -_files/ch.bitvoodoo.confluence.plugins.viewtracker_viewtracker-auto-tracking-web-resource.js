@@ -1,0 +1,6 @@
+WRMCB=function(e){var c=console;if(c&&c.log&&c.error){c.log('Error running batched script.');c.error(e);}}
+;
+try {
+/* module-key = 'ch.bitvoodoo.confluence.plugins.viewtracker:viewtracker-auto-tracking-web-resource', location = 'ch/bitvoodoo/confluence/plugins/viewtracker/scripts/viewtracker-auto-tracking.js' */
+require(["ajs","jquery","bitvoodoo/viewtracker/namespaces"],function(c,d,b){var e=b.Configuration.desktopTrackingEnabled;function a(){var f=c.Meta.get("page-id");if(b.Configuration.hasOwnProperty("Viewport")){var g=b.Configuration.Viewport.contentId;f=parseInt(g)}return f}c.toInit(function(j){var g=a();if(!g||isNaN(g)){return}var h=j("#reporting-single-content-link-wrapper");var i=h.find("#reporting-single-content-link span");i.html("");h.spin();function f(m){var l=m.count;if(l){i.html(l.toLocaleString()+" "+"view(s)")}h.spinStop()}if(e){var k={pageId:g};if(i.size()===0){Bitvoodoo.Viewtracker.VisitsService.trackVisit(undefined,undefined,k)}else{Bitvoodoo.Viewtracker.VisitsService.trackVisit(Bitvoodoo.Viewtracker.VisitsService.getVisitsTotal,f,k)}}})});
+}catch(e){WRMCB(e)};
